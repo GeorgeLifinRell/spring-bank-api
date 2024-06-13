@@ -1,5 +1,5 @@
 package com.basic.base.enums;
 
-public enum gender {
-    Male, Female
+public enum Gender {
+    MALE, FEMALE
 }

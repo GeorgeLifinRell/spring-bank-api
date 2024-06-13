@@ -1,9 +1,11 @@
 package com.basic.base.controller;
 
 import com.basic.base.DTO.UserDTO;
+import com.basic.base.model.Account;
 import com.basic.base.model.User;
 import com.basic.base.service.UserService;
 import com.basic.base.service.AccountService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +21,14 @@ public class UserController {
     private AccountService accountService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody UserDTO user) {
-        User registeredUser = userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword(),user.getGender(),user.getPhone_no(),user.getAcc_type());
-        accountService.CreateAccount(registeredUser.getuserName(), registeredUser.getEmail(), registeredUser.getPhone_no(), registeredUser.getGender(), registeredUser.getAcc_type()); // Assuming a default savings account
-        return ResponseEntity.ok(registeredUser);
+    public ResponseEntity<Account> register(@RequestBody UserDTO user) {
+        User registeredUser = userService.registerUser(user.getUserName(), user.getEmail(), user.getPassword(),user.getGender(),user.getPhoneNumber(),user.getAccountType());
+        Account newAccount = accountService.createAccount(registeredUser.getUserName(), registeredUser.getEmail(), registeredUser.getPhoneNumber(), registeredUser.getGender(), registeredUser.getAccountType()); // Assuming a default savings account
+        return ResponseEntity.ok(newAccount);
     }
     @GetMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
-        User loggedInUser = userService.LoginUser(user.getuserName(), user.getPassword());
+        User loggedInUser = userService.LoginUser(user.getUserName(), user.getPassword());
         if (loggedInUser != null) {
             return ResponseEntity.ok(loggedInUser);
         }
