@@ -37,6 +37,7 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setType(TransactionType.CREDIT);
             transaction.setCreatedAt(new Date(System.currentTimeMillis()));
             transaction.setBalanceAfter(newBalance);
+            customAccountRepositoryImpl.updateBalanceByAccountNumber(existingAccount.getAccountNumber(), newBalance);
             return transactionRepository.save(transaction);
         } else {
             throw new Exception("Account not found");
