@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends MongoRepository<Account, String> {
-    Account findAccountByAccountNumber(String accountNumber);
+    Account findByAccountNumber(String accountNumber);
 
     Account updateBalanceByAccountNumber(String accountNumber, double newBalance);
 
