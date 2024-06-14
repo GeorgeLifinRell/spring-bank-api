@@ -11,6 +11,7 @@ import com.basic.base.model.Account;
 import com.basic.base.model.Transaction;
 import com.basic.base.repository.AccountRepository;
 import com.basic.base.repository.TransactionRepository;
+import com.basic.base.repository.impl.CustomAccountRepositoryImpl;
 import com.basic.base.service.TransactionService;
 
 @Service
@@ -18,6 +19,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    CustomAccountRepositoryImpl customAccountRepositoryImpl;
 
     @Autowired
     TransactionRepository transactionRepository;
@@ -53,7 +57,7 @@ public class TransactionServiceImpl implements TransactionService {
             transaction.setType(TransactionType.DEBIT);
             transaction.setCreatedAt(new Date(System.currentTimeMillis()));
             transaction.setBalanceAfter(newBalance);
-            accountRepository.updateBalanceByAccountNumber(existingAccount.getAccountNumber(), newBalance);
+            customAccountRepositoryImpl.updateBalanceByAccountNumber(existingAccount.getAccountNumber(), newBalance);
             return transactionRepository.save(transaction);
         } else {
             throw new Exception("Account not found");
