@@ -34,7 +34,7 @@ public class TransactionServiceImpl implements TransactionService {
             Transaction transaction = new Transaction();
             transaction.setAccountNumber(accountNumber);
             transaction.setAmount(amount);
-            transaction.setType(TransactionType.CREDIT);
+            transaction.setTransactionType(TransactionType.CREDIT);
             transaction.setCreatedAt(new Date(System.currentTimeMillis()));
             transaction.setBalanceAfter(newBalance);
             customAccountRepositoryImpl.updateBalanceByAccountNumber(existingAccount.getAccountNumber(), newBalance);
@@ -55,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
             Transaction transaction = new Transaction();
             transaction.setAccountNumber(accountNumber);
             transaction.setAmount(amount);
-            transaction.setType(TransactionType.DEBIT);
+            transaction.setTransactionType(TransactionType.DEBIT);
             transaction.setCreatedAt(new Date(System.currentTimeMillis()));
             transaction.setBalanceAfter(newBalance);
             customAccountRepositoryImpl.updateBalanceByAccountNumber(existingAccount.getAccountNumber(), newBalance);

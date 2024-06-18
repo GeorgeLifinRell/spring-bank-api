@@ -65,12 +65,13 @@ public class TransactionServiceImplTest {
     @Test
     public void testDeposit_Success() throws Exception {
         when(accountRepository.findByAccountNumber(accountNumber)).thenReturn(account);
+        transaction.setTransactionType(TransactionType.CREDIT);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(transaction);
 
         Transaction result = transactionService.deposit(accountNumber, amount);
 
         assertNotNull(result);
-        assertEquals(TransactionType.CREDIT, result.getType());
+        assertEquals(TransactionType.CREDIT, result.getTransactionType());
         assertEquals(accountNumber, result.getAccountNumber());
         assertEquals(amount, result.getAmount());
 
@@ -98,12 +99,13 @@ public class TransactionServiceImplTest {
     @Test
     public void testWithdraw_Success() throws Exception {
         when(accountRepository.findByAccountNumber(accountNumber)).thenReturn(account);
+        transaction.setTransactionType(TransactionType.DEBIT);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(transaction);
 
         Transaction result = transactionService.withdraw(accountNumber, amount);
 
         assertNotNull(result);
-        assertEquals(TransactionType.DEBIT, result.getType());
+        assertEquals(TransactionType.DEBIT, result.getTransactionType());
         assertEquals(accountNumber, result.getAccountNumber());
         assertEquals(amount, result.getAmount());
 

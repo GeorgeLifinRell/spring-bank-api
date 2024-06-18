@@ -18,5 +18,5 @@ public class Transaction {
     private double amount;
     private double balanceAfter;
     private Date createdAt;
-    private TransactionType type;
+    private TransactionType transactionType;
 }
