@@ -11,7 +11,7 @@ import com.basic.base.enums.Gender;
 public class AccountDTO {
 
     @NotNull(message = "Username cannot be null")
-    private String userName;
+    private String username;
 
     @Email(message = "Invalid email address")
     private String email;
@@ -24,7 +24,7 @@ public class AccountDTO {
 
     @NotNull(message = "Account type cannot be null")
     private AccountType accountType;
-    
+
     private String accountNumber;
     private double balance;
 }

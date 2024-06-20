@@ -22,13 +22,20 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Account> register(@RequestBody UserDTO user) {
-        User registeredUser = userService.registerUser(user.getUserName(), user.getEmail(), user.getPassword(),user.getGender(),user.getPhoneNumber(),user.getAccountType());
-        Account newAccount = accountService.createAccount(registeredUser.getUserName(), registeredUser.getEmail(), registeredUser.getPhoneNumber(), registeredUser.getGender(), registeredUser.getAccountType()); // Assuming a default savings account
+        User registeredUser = userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword(),
+                user.getGender(), user.getPhoneNumber(), user.getAccountType());
+        Account newAccount = accountService.createAccount(registeredUser.getUsername(), registeredUser.getEmail(),
+                registeredUser.getPhoneNumber(), registeredUser.getGender(), registeredUser.getAccountType()); // Assuming
+                                                                                                               // a
+                                                                                                               // default
+                                                                                                               // savings
+                                                                                                               // account
         return ResponseEntity.ok(newAccount);
     }
+
     @GetMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
-        User loggedInUser = userService.LoginUser(user.getUserName(), user.getPassword());
+        User loggedInUser = userService.LoginUser(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
             return ResponseEntity.ok(loggedInUser);
         }

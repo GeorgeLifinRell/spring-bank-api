@@ -13,12 +13,12 @@ import com.basic.base.enums.Gender;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountTest {
-    
+
     @InjectMocks
     private Account account;
 
     private final String id = "1";
-    private final String userName = "JohnDoe";
+    private final String username = "JohnDoe";
     private final String email = "john.doe@example.com";
     private final String phoneNumber = "1234567890";
     private final Gender gender = Gender.MALE;
@@ -33,7 +33,7 @@ public class AccountTest {
         MockitoAnnotations.openMocks(this);
 
         account.setId(id);
-        account.setUserName(userName);
+        account.setUsername(username);
         account.setEmail(email);
         account.setPhoneNumber(phoneNumber);
         account.setGender(gender);
@@ -47,7 +47,7 @@ public class AccountTest {
     @Test
     public void testGettersAndSetters() {
         assertThat(account.getId()).isEqualTo(id);
-        assertThat(account.getUserName()).isEqualTo(userName);
+        assertThat(account.getUsername()).isEqualTo(username);
         assertThat(account.getEmail()).isEqualTo(email);
         assertThat(account.getPhoneNumber()).isEqualTo(phoneNumber);
         assertThat(account.getGender()).isEqualTo(gender);
@@ -68,7 +68,7 @@ public class AccountTest {
     public void testAllArgsConstructor() {
         Account newAccount = new Account();
         newAccount.setId(id);
-        newAccount.setUserName(userName);
+        newAccount.setUsername(username);
         newAccount.setEmail(email);
         newAccount.setPhoneNumber(phoneNumber);
         newAccount.setGender(gender);
@@ -79,7 +79,7 @@ public class AccountTest {
         newAccount.setUpdatedAt(updatedAt);
 
         assertThat(newAccount.getId()).isEqualTo(id);
-        assertThat(newAccount.getUserName()).isEqualTo(userName);
+        assertThat(newAccount.getUsername()).isEqualTo(username);
         assertThat(newAccount.getEmail()).isEqualTo(email);
         assertThat(newAccount.getPhoneNumber()).isEqualTo(phoneNumber);
         assertThat(newAccount.getGender()).isEqualTo(gender);
@@ -93,14 +93,15 @@ public class AccountTest {
     @Test
     public void testToString() {
         String toString = account.toString();
-        assertThat(toString).contains(id, userName, email, phoneNumber, gender.toString(), accountType.toString(), accountNumber, String.valueOf(balance), createdAt.toString(), updatedAt.toString());
+        assertThat(toString).contains(id, username, email, phoneNumber, gender.toString(), accountType.toString(),
+                accountNumber, String.valueOf(balance), createdAt.toString(), updatedAt.toString());
     }
 
     @Test
     public void testEqualsAndHashCode() {
         Account anotherAccount = new Account();
         anotherAccount.setId(id);
-        anotherAccount.setUserName(userName);
+        anotherAccount.setUsername(username);
         anotherAccount.setEmail(email);
         anotherAccount.setPhoneNumber(phoneNumber);
         anotherAccount.setGender(gender);

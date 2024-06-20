@@ -23,7 +23,7 @@ import com.basic.base.repository.impl.CustomAccountRepositoryImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
-    
+
     @Mock
     private AccountRepository accountRepository;
 
@@ -34,7 +34,7 @@ public class AccountServiceTest {
     private AccountService accountService;
 
     private Account account;
-    private final String userName = "testUser";
+    private final String username = "testUser";
     private final String email = "testUser@example.com";
     private final String phoneNumber = "1234567890";
     private final Gender gender = Gender.MALE;
@@ -44,7 +44,7 @@ public class AccountServiceTest {
     @BeforeEach
     public void setUp() {
         account = new Account();
-        account.setUserName(userName);
+        account.setUsername(username);
         account.setEmail(email);
         account.setPhoneNumber(phoneNumber);
         account.setAccountNumber(accountNumber);
@@ -59,9 +59,9 @@ public class AccountServiceTest {
         when(customAccountRepositoryImpl.findLastAccountNumber()).thenReturn(1000L);
         when(accountRepository.save(any(Account.class))).thenReturn(account);
 
-        Account createdAccount = accountService.createAccount(userName, email, phoneNumber, gender, accountType);
+        Account createdAccount = accountService.createAccount(username, email, phoneNumber, gender, accountType);
 
-        assertEquals(userName, createdAccount.getUserName());
+        assertEquals(username, createdAccount.getUsername());
         assertEquals(email, createdAccount.getEmail());
         assertEquals(phoneNumber, createdAccount.getPhoneNumber());
         assertEquals(accountNumber, createdAccount.getAccountNumber());

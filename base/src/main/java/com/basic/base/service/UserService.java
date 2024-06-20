@@ -13,9 +13,10 @@ public class UserService {
     @Autowired
     private UserRepository UserRepository;
 
-    public User registerUser(String userName, String email, String password, Gender gender, String phoneNumber, AccountType accType) {
+    public User registerUser(String username, String email, String password, Gender gender, String phoneNumber,
+            AccountType accType) {
         User user = new User();
-        user.setUserName(userName);
+        user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
         user.setGender(gender);
@@ -24,8 +25,8 @@ public class UserService {
         return UserRepository.save(user);
     }
 
-    public User LoginUser(String username,String password) {
-        User user = UserRepository.findByUserName(username);
+    public User LoginUser(String username, String password) {
+        User user = UserRepository.findByUsername(username);
         if (user != null && password.equals(user.getPassword())) {
             return user;
         }

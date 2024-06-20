@@ -20,11 +20,11 @@ public class AccountService {
     @Autowired
     private CustomAccountRepositoryImpl customAccountRepositoryImpl;
 
-    public Account createAccount(String userName, String email, String phoneNumber, Gender gender,
+    public Account createAccount(String username, String email, String phoneNumber, Gender gender,
             AccountType accountType) {
         Account account = new Account();
         String accountNumber = String.valueOf(customAccountRepositoryImpl.findLastAccountNumber() + 1);
-        account.setUserName(userName);
+        account.setUsername(username);
         account.setEmail(email);
         account.setPhoneNumber(phoneNumber);
         account.setAccountNumber(accountNumber);

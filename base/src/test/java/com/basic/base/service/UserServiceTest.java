@@ -29,7 +29,7 @@ public class UserServiceTest {
     private UserService userService;
 
     private User user;
-    private final String userName = "testUser";
+    private final String username = "testUser";
     private final String email = "testUser@example.com";
     private final String password = "password";
     private final Gender gender = Gender.MALE;
@@ -39,7 +39,7 @@ public class UserServiceTest {
     @BeforeEach
     public void setUp() {
         user = new User();
-        user.setUserName(userName);
+        user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
         user.setGender(gender);
@@ -51,9 +51,9 @@ public class UserServiceTest {
     public void testRegisterUser() {
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        User registeredUser = userService.registerUser(userName, email, password, gender, phoneNumber, accountType);
+        User registeredUser = userService.registerUser(username, email, password, gender, phoneNumber, accountType);
 
-        assertEquals(userName, registeredUser.getUserName());
+        assertEquals(username, registeredUser.getUsername());
         assertEquals(email, registeredUser.getEmail());
         assertEquals(password, registeredUser.getPassword());
         assertEquals(gender, registeredUser.getGender());
@@ -65,36 +65,36 @@ public class UserServiceTest {
 
     @Test
     public void testLoginUser_Success() {
-        when(userRepository.findByUserName(userName)).thenReturn(user);
+        when(userRepository.findByUsername(username)).thenReturn(user);
 
-        User loggedInUser = userService.LoginUser(userName, password);
+        User loggedInUser = userService.LoginUser(username, password);
 
         assertNotNull(loggedInUser);
-        assertEquals(userName, loggedInUser.getUserName());
+        assertEquals(username, loggedInUser.getUsername());
         assertEquals(password, loggedInUser.getPassword());
 
-        verify(userRepository, times(1)).findByUserName(userName);
+        verify(userRepository, times(1)).findByUsername(username);
     }
 
     @Test
     public void testLoginUser_Failure() {
-        when(userRepository.findByUserName(userName)).thenReturn(user);
+        when(userRepository.findByUsername(username)).thenReturn(user);
 
-        User loggedInUser = userService.LoginUser(userName, "wrongPassword");
+        User loggedInUser = userService.LoginUser(username, "wrongPassword");
 
         assertNull(loggedInUser);
 
-        verify(userRepository, times(1)).findByUserName(userName);
+        verify(userRepository, times(1)).findByUsername(username);
     }
 
     @Test
     public void testLoginUser_UserNotFound() {
-        when(userRepository.findByUserName(userName)).thenReturn(null);
+        when(userRepository.findByUsername(username)).thenReturn(null);
 
-        User loggedInUser = userService.LoginUser(userName, password);
+        User loggedInUser = userService.LoginUser(username, password);
 
         assertNull(loggedInUser);
 
-        verify(userRepository, times(1)).findByUserName(userName);
+        verify(userRepository, times(1)).findByUsername(username);
     }
 }

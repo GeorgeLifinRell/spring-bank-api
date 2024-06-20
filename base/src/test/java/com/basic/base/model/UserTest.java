@@ -15,7 +15,7 @@ public class UserTest {
     private User user;
 
     private final String id = "1";
-    private final String userName = "testuser";
+    private final String username = "testuser";
     private final String email = "testuser@example.com";
     private final String password = "password123";
     private final Gender gender = Gender.MALE;
@@ -27,7 +27,7 @@ public class UserTest {
         MockitoAnnotations.openMocks(this);
 
         user.setId(id);
-        user.setUserName(userName);
+        user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
         user.setGender(gender);
@@ -38,7 +38,7 @@ public class UserTest {
     @Test
     public void testGettersAndSetters() {
         assertThat(user.getId()).isEqualTo(id);
-        assertThat(user.getUserName()).isEqualTo(userName);
+        assertThat(user.getUsername()).isEqualTo(username);
         assertThat(user.getEmail()).isEqualTo(email);
         assertThat(user.getPassword()).isEqualTo(password);
         assertThat(user.getGender()).isEqualTo(gender);
@@ -56,7 +56,7 @@ public class UserTest {
     public void testAllArgsConstructor() {
         User newUser = new User();
         newUser.setId(id);
-        newUser.setUserName(userName);
+        newUser.setUsername(username);
         newUser.setEmail(email);
         newUser.setPassword(password);
         newUser.setGender(gender);
@@ -64,7 +64,7 @@ public class UserTest {
         newUser.setAccountType(accountType);
 
         assertThat(newUser.getId()).isEqualTo(id);
-        assertThat(newUser.getUserName()).isEqualTo(userName);
+        assertThat(newUser.getUsername()).isEqualTo(username);
         assertThat(newUser.getEmail()).isEqualTo(email);
         assertThat(newUser.getPassword()).isEqualTo(password);
         assertThat(newUser.getGender()).isEqualTo(gender);
@@ -75,7 +75,7 @@ public class UserTest {
     @Test
     public void testToString() {
         String toString = user.toString();
-        assertThat(toString).contains(id, userName, email, password, gender.toString(), phoneNumber,
+        assertThat(toString).contains(id, username, email, password, gender.toString(), phoneNumber,
                 accountType.toString());
     }
 
@@ -83,7 +83,7 @@ public class UserTest {
     public void testEqualsAndHashCode() {
         User anotherUser = new User();
         anotherUser.setId(id);
-        anotherUser.setUserName(userName);
+        anotherUser.setUsername(username);
         anotherUser.setEmail(email);
         anotherUser.setPassword(password);
         anotherUser.setGender(gender);

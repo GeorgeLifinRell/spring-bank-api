@@ -42,7 +42,7 @@ public class UserControllerTest {
     @BeforeEach
     public void setUp() {
         userDTO = new UserDTO();
-        userDTO.setUserName("testUser");
+        userDTO.setUsername("testUser");
         userDTO.setEmail("test@example.com");
         userDTO.setPassword("password");
         userDTO.setGender(Gender.MALE);
@@ -50,7 +50,7 @@ public class UserControllerTest {
         userDTO.setAccountType(AccountType.SAVINGS);
 
         user = new User();
-        user.setUserName("testUser");
+        user.setUsername("testUser");
         user.setEmail("test@example.com");
         user.setPassword("password");
         user.setGender(Gender.MALE);
@@ -58,7 +58,7 @@ public class UserControllerTest {
         user.setAccountType(AccountType.SAVINGS);
 
         account = new Account();
-        account.setUserName("testUser");
+        account.setUsername("testUser");
         account.setEmail("test@example.com");
         account.setPhoneNumber("1234567890");
         account.setGender(Gender.MALE);
@@ -76,9 +76,9 @@ public class UserControllerTest {
 
         assertEquals(200, response.getStatusCode().value());
         assertEquals(account, response.getBody());
-        verify(userService, times(1)).registerUser(userDTO.getUserName(), userDTO.getEmail(), userDTO.getPassword(),
+        verify(userService, times(1)).registerUser(userDTO.getUsername(), userDTO.getEmail(), userDTO.getPassword(),
                 userDTO.getGender(), userDTO.getPhoneNumber(), userDTO.getAccountType());
-        verify(accountService, times(1)).createAccount(user.getUserName(), user.getEmail(), user.getPhoneNumber(),
+        verify(accountService, times(1)).createAccount(user.getUsername(), user.getEmail(), user.getPhoneNumber(),
                 user.getGender(), user.getAccountType());
     }
 
@@ -90,7 +90,7 @@ public class UserControllerTest {
 
         assertEquals(200, response.getStatusCode().value());
         assertEquals(user, response.getBody());
-        verify(userService, times(1)).LoginUser(user.getUserName(), user.getPassword());
+        verify(userService, times(1)).LoginUser(user.getUsername(), user.getPassword());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class UserControllerTest {
         ResponseEntity<User> response = userController.login(user);
 
         assertEquals(401, response.getStatusCode().value());
-        verify(userService, times(1)).LoginUser(user.getUserName(), user.getPassword());
+        verify(userService, times(1)).LoginUser(user.getUsername(), user.getPassword());
     }
 
 }

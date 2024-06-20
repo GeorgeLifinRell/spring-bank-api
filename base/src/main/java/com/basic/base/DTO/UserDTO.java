@@ -11,7 +11,7 @@ import com.basic.base.enums.AccountType;
 public class UserDTO {
 
     @NotNull(message = "Username cannot be null")
-    private String userName;
+    private String username;
     @Email(message = "Invalid email address")
     private String email;
     @NotNull(message = "Password cannot be null")

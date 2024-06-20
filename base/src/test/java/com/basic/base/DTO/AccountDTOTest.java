@@ -14,7 +14,7 @@ public class AccountDTOTest {
     @InjectMocks
     private AccountDTO accountDTO;
 
-    private final String userName = "testuser";
+    private final String username = "testuser";
     private final String email = "testuser@example.com";
     private final String phoneNumber = "1234567890";
     private final Gender gender = Gender.MALE;
@@ -26,7 +26,7 @@ public class AccountDTOTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        accountDTO.setUserName(userName);
+        accountDTO.setUsername(username);
         accountDTO.setEmail(email);
         accountDTO.setPhoneNumber(phoneNumber);
         accountDTO.setGender(gender);
@@ -37,7 +37,7 @@ public class AccountDTOTest {
 
     @Test
     public void testGettersAndSetters() {
-        assertThat(accountDTO.getUserName()).isEqualTo(userName);
+        assertThat(accountDTO.getUsername()).isEqualTo(username);
         assertThat(accountDTO.getEmail()).isEqualTo(email);
         assertThat(accountDTO.getPhoneNumber()).isEqualTo(phoneNumber);
         assertThat(accountDTO.getGender()).isEqualTo(gender);
@@ -55,7 +55,8 @@ public class AccountDTOTest {
     @Test
     public void testToString() {
         String toString = accountDTO.toString();
-        assertThat(toString).contains(userName, email, phoneNumber, gender.toString(), accountType.toString(), accountNumber, String.valueOf(balance));
+        assertThat(toString).contains(username, email, phoneNumber, gender.toString(), accountType.toString(),
+                accountNumber, String.valueOf(balance));
     }
 
 }
